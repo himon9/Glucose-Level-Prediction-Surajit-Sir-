@@ -90,7 +90,7 @@ while(E_tot > eps):
             E_curr += 0.5 * (Y_train[n,j] - V2[n,j]) ** 2
         E_tot += E_curr
 
-        # print(f"\nPoint : {n}, Y_train : { denormalise(Y_train[n,0])},  V2_train : {denormalise(V2[n,0])},   Iter : {tot_iterations}")
+        print(f"\nPoint : {n}, Y_train : { denormalise(Y_train[n,0])},  V2_train : {denormalise(V2[n,0])},   Iter : {tot_iterations}")
         print(f"Itr : {tot_iterations}, Pt : {n}, Y_train : { (Y_train[n,0])},  V2 : {(V2[n,0])}, Err : {E_curr}")
         # print("Weight 1 :", W1)
         # print("Weight 2 :", W2)
@@ -109,7 +109,7 @@ while(E_tot > eps):
 
     print("In-sample error : ", E_tot / train_data)
     print("\n")
-    if tot_iterations > 50:
+    if tot_iterations > 500:
         break
 
 

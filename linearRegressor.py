@@ -10,10 +10,11 @@ D=2 #Number of features (Added one more feature to consider the threshold value)
 C=1 #Number of classes. 
 
 tot_data=117
-train_data=110
+train_data=50
 
 X_train=np.zeros((train_data,D)) # Time Taken (sec.) (Input)
 Y_train=np.zeros((train_data,C)) # Glucose Level (Output)
+
 
 
 #Getting the input data into dataframe
@@ -26,9 +27,25 @@ for index,row in df.iterrows():
     else:
         break
 
+
+# Checking linear separability using Scatter Plot
+
+for x,y in zip(X_train,Y_train):
+    if y > 190:
+        plt.scatter(x[1], y, color='red')
+    elif 160 < y <=190:
+        plt.scatter(x[1], y, color='blue')
+    else:
+        plt.scatter(x[1], y, color='green')
+
+plt.title('Scatter Plot for Checking Linear Separability')
+plt.xlabel('Time (sec.)')
+plt.ylabel('Glucose Level (mg/dL)')
+plt.savefig('./GlucoseVsTime.png')
+plt.close()
 W=np.dot(np.dot(np.linalg.inv(np.dot( np.transpose(X_train),X_train)),np.transpose(X_train)),Y_train)
 
-# print(W)
+print(W)
 # Y_predict=np.dot(np.transpose(W),X_train[1])
 # print("Y_predict : ",Y_predict)
 # print("Y_actual : ",Y_train[1])
@@ -67,6 +84,7 @@ plt.plot(Y_test, color='blue', label='Actual Glucose Value')
 plt.plot(Y_predict, color='green', label='Predicted Glucose Value')
 plt.title('Linear Regressor Eq : W= inv(trans(X)*X) * trans(X) * Y')
 plt.xlabel('Nubmer of values')
-plt.ylabel('Glucose Level')
+plt.ylabel('Glucose Level (mg/dL)')
 plt.legend()
-plt.show()
+plt.savefig('./PredictedVsActual.png')
+

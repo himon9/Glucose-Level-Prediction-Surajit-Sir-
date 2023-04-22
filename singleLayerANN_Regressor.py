@@ -12,7 +12,7 @@ C=1 #Number of classes.
 
 
 tot_data=117
-train_data=117
+train_data=100
 
 X_train=np.zeros((train_data,D)) # Time Taken (sec.) (Input)
 Y_train=np.zeros((train_data,C)) # Glucose Level (Output)
@@ -67,7 +67,7 @@ while(E_tot>eps):
             for i in range(D):
                 W[j,i]+=eta*(Y_train[n,j]-V[n,j])*(phi(U[n,j])*(1-phi(U[n,j])))*X_train[n,i] 
         E_tot+=E_curr           
-    # print("In-Sample Error : ",E_tot," Iterations : ",tot_iterations)
+    print("In-Sample Error : ",E_tot," Iterations : ",tot_iterations)
 
     if (tot_iterations>5000):
         break
